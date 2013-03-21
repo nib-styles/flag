@@ -1,0 +1,82 @@
+@mixin p-flag($direction: 'right') {
+  $arrow-width: 10px;
+  $arrow-height: 11px;
+  $arrow-color: darken($dark-green, 10%);
+
+  box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+  text-shadow: 0 1px 1px rgba(#000, 0.4);
+
+  color: #fff;
+  height: 32px;
+  line-height: 15px;
+  padding: 9px $spacing-normal;
+  position: relative;
+  zoom: 1;
+  max-width: 230px;
+
+  &:before {
+    @include show-pseudo-element;
+    position: absolute;
+    top: -$arrow-height;
+  }
+
+  &:after {
+    @include show-pseudo-element;
+    width: 10px;
+    height: 50px;
+    top: 0;
+    position: absolute;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+    background: bg-url('flag-fork.png') no-repeat center center;
+
+    .no-cssgradients & {
+      background-image: bg-url('flag-fork-dark.png');
+    }
+  }
+
+  @if $direction == 'right' {
+    @include horizontal-gradient($dark-green, $light-green, $dark-green);
+    padding-left: 30px;
+    padding-right: 10px;
+
+    &:before {
+      @include triangle('bottom-right', $arrow-width, $arrow-height, $arrow-color);
+      left: 0px;
+    }
+
+    &:after {
+      right: -10px;
+    }
+  }
+  @else {
+    @include horizontal-gradient($light-green, $dark-green, $dark-green);
+
+    &:before {
+      @include triangle('bottom-left', $arrow-width, $arrow-height, $arrow-color);
+      right: 0px;
+    }
+
+    &:after {
+      background-image: bg-url('flag-fork-reversed.png');
+      left: -10px;
+      .no-cssgradients & {
+        background-image: bg-url('flag-fork-reversed-dark.png');
+      }
+    }
+  }
+}
+
+// Apply a flag to a paragraph element
+// 
+// .p-flag - Flag right
+// .p-flag-reverse - Flag left
+// 
+// Styleguide 4.2.0
+
+.p-flag {
+  @include p-flag('right');
+}
+
+.p-flag-reverse {
+  @include p-flag('left');
+}

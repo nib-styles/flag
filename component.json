@@ -1,0 +1,13 @@
+{
+  "name": "flag",
+  "main": "index.scss",
+  "version": "0.1.0",
+  "dependencies": {},
+  "styles": ["index.scss"],
+  "files": [
+    "images/flag-fork-dark.png",
+    "images/flag-fork-reversed-dark.png",
+    "images/flag-fork-reversed.png",
+    "images/flag-fork.png"
+  ]
+}
